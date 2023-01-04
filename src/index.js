@@ -13,21 +13,21 @@ const listEl = document.querySelector(".country-list")
 const descrEl = document.querySelector(".country-info")
 
 
-/* inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY)) */
-inputEl.addEventListener('input', onInput)
+inputEl.addEventListener('input', debounce(onInput, DEBOUNCE_DELAY))
+/* inputEl.addEventListener('input', onInput) */
 
 
 
 function onInput(e) {
-    
-    console.log(e.currentTarget.value); 
-    if (e.currentTarget.value === "" ) {
+    const formRef = e.currentTarget;
+    console.log(formRef.value); 
+    if (formRef.value === "" ) {
         listEl.innerHTML = "";
          descrEl.innerHTML = "";
      return
     }
 
-fetchCountries(e.currentTarget.value)
+fetchCountries(formRef.value)
     .then(countries => {
         console.log(countries)
  
