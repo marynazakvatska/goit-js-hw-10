@@ -3,8 +3,8 @@ import './css/styles.css';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fetchCountries } from './fetchCountries';
-import descriptionTemplate from './description-card.hbs';
-import listItemTemplate from './listTemplate.hbs';
+import descriptionTemplate from './templates/description-card.hbs';
+import listItemTemplate from './templates/listTemplate.hbs';
 
 const DEBOUNCE_DELAY = 300;
 
