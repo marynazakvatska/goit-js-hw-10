@@ -19,6 +19,7 @@ inputEl.addEventListener('input', onInput)
 
 
 function onInput(e) {
+    
     console.log(e.currentTarget.value); 
     if (e.currentTarget.value === "" ) {
         listEl.innerHTML = "";
