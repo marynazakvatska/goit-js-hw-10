@@ -39,7 +39,7 @@ function onInput(e) {
     })
     .catch(onFetchError);
 }
-console.log('hello');
+
 
 function onFetchError(error) {
   return Notify.failure('Oops, there is no country with that name');
