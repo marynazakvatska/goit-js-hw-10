@@ -34,7 +34,7 @@ function onInput(e) {
       } else if (countries.length === 1) {
          listEl.innerHTML = '';
         descrEl.innerHTML = descriptionTemplate(countries);
-        console.log("done")
+       
       }
     })
     .catch(onFetchError)
