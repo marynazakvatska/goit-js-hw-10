@@ -3,9 +3,7 @@ import './css/styles.css';
 import debounce from 'lodash.debounce';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { fetchCountries } from './fetchCountries';
-/* import descriptionTemplate from './templates/description-card.hbs';
-import listItemTemplate from './templates/listTemplate.hbs';
- */
+
 const DEBOUNCE_DELAY = 300;
 
 const inputEl = document.querySelector('input#search-box');
@@ -19,7 +17,7 @@ function onInput(e) {
   if (e.target.value.trim() === '') {
     listEl.innerHTML = '';
     descrEl.innerHTML = '';
-    /* return; */
+    return;
   }
 
   fetchCountries(e.target.value.trim())
@@ -27,7 +25,7 @@ function onInput(e) {
       if (countries.length >= 10) {
         listEl.innerHTML = '';
         descrEl.innerHTML = '';
-        return Notify.info(
+     return  Notify.info(
           'Too many matches found. Please enter a more specific name.'
         );
       } else if (countries.length < 10 && countries.length >= 2) {
@@ -35,10 +33,12 @@ function onInput(e) {
        listEl.innerHTML = listItemTemplate(countries);
       } else if (countries.length === 1) {
          listEl.innerHTML = '';
-       descrEl.innerHTML = descriptionTemplate(countries);
+        descrEl.innerHTML = descriptionTemplate(countries);
+        console.log("done")
       }
     })
-    .catch(onFetchError);
+    .catch(onFetchError)
+
 }
 
 function listItemTemplate(countries) {
@@ -52,9 +52,8 @@ function listItemTemplate(countries) {
 
 function descriptionTemplate(countries) { 
   return countries.map(({ flag, name, capital, population, languages }) => {
-    
     const language = languages.map(language => language.name)
-console.log(language)
+
  return `
   <ul>
     <li>
@@ -69,5 +68,7 @@ console.log(language)
 }
 
 function onFetchError(error) {
-  return Notify.failure('Oops, there is no country with that name');
+   listEl.innerHTML = '';
+  descrEl.innerHTML = '';
+ return Notify.failure('Oops, there is no country with that name');
 }
